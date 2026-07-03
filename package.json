@@ -8,7 +8,7 @@
   "scripts": {
     "migrate": "node packages/db/migrate.mjs",
     "seed": "node packages/db/seed/seed.mjs",
-    "test": "node --test apps/api/test/*.test.mjs"
+    "test": "node --test 'apps/api/test/*.test.mjs' && node --import ./node_modules/tsx/dist/loader.mjs --test 'apps/api/test/*.test.mts'"
   },
   "devDependencies": {
     "@types/node": "^26.1.0",

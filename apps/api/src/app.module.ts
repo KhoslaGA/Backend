@@ -1,10 +1,17 @@
 import { Module } from '@nestjs/common';
 import { DbService } from './common/db.service.js';
 import { CatalogController } from './catalog/catalog.controller.js';
+import { CompareController } from './catalog/compare.controller.js';
 import { RedirectController } from './redirect/redirect.controller.js';
+import { MatchController } from './match/match.controller.js';
+import { EventsController } from './events/events.controller.js';
+import { AdminOffersController } from './admin/offers.controller.js';
 
 @Module({
-  controllers: [CatalogController, RedirectController],
-  providers: [DbService],
+  // CompareController before CatalogController: /v1/cards/compare must not be
+  // swallowed by /v1/cards route matching order
+  controllers: [CompareController, CatalogController, RedirectController,
+                MatchController, EventsController, AdminOffersController],
+  providers: [DbService, CatalogController],
 })
 export class AppModule {}
