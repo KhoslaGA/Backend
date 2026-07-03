@@ -1,4 +1,5 @@
-import { BadRequestException, Body, Controller, Headers, Inject, NotFoundException, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Headers, Inject, NotFoundException, Post, UseGuards } from '@nestjs/common';
+import { AdminGuard } from '../common/admin.guard.js';
 import { DbService } from '../common/db.service.js';
 
 /**
@@ -25,6 +26,7 @@ interface NewOfferDto {
 }
 
 @Controller('admin/offers')
+@UseGuards(AdminGuard)
 export class AdminOffersController {
   constructor(@Inject(DbService) private db: DbService) {}
 
