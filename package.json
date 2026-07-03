@@ -1,0 +1,19 @@
+{
+  "name": "ratefamily-backend",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "migrate": "node packages/db/migrate.mjs",
+    "seed": "node packages/db/seed/seed.mjs",
+    "test": "node --test apps/api/test/*.test.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "@types/pg": "^8.20.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}

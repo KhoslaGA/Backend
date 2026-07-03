@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "NodeNext", "moduleResolution": "NodeNext",
+    "strict": true, "experimentalDecorators": true, "emitDecoratorMetadata": true,
+    "esModuleInterop": true, "skipLibCheck": true, "outDir": "dist",
+    "paths": { "@ratefamily/contracts": ["../../packages/contracts/src/index.ts"] },
+    "baseUrl": "."
+  },
+  "include": ["src/**/*.ts"]
+}
