@@ -7,12 +7,16 @@ import { MatchController } from './match/match.controller.js';
 import { EventsController } from './events/events.controller.js';
 import { AdminOffersController } from './admin/offers.controller.js';
 import { AdminGuard } from './common/admin.guard.js';
+import { AdminAwardsController } from './admin/awards.controller.js';
+import { AwardsController } from './catalog/awards.controller.js';
+import { LeadsController } from './leads/leads.controller.js';
 
 @Module({
   // CompareController before CatalogController: /v1/cards/compare must not be
   // swallowed by /v1/cards route matching order
   controllers: [CompareController, CatalogController, RedirectController,
-                MatchController, EventsController, AdminOffersController],
+                MatchController, EventsController, AdminOffersController,
+                AdminAwardsController, AwardsController, LeadsController],
   providers: [DbService, CatalogController, AdminGuard],
 })
 export class AppModule {}
