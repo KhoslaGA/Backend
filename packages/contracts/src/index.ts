@@ -1,14 +1,11 @@
-/**
- * @ratefamily/contracts — single source of truth for API shapes.
- * Real adapters, mock server, and frontend ALL import from here.
- * Rule: mocks and adapters never share code except this package.
- */
+/** Catalog / redirect / events / awards contracts — merged from backend, July 5. */
 
 // ---------- shared ----------
 export type Tenant = 'toprates' | 'liferate' | 'termrates' | 'healthrate';
 export type Network = 'visa' | 'mastercard' | 'amex';
 export type CreditBand = 'none' | 'poor' | 'fair' | 'good' | 'excellent';
-export type AffiliateNetwork = 'fintel' | 'cj' | 'direct' | 'none';
+/** Catalog-side network incl. non-postback values; postback networks are ./marketing's AffiliateNetwork. */
+export type CatalogAffiliateNetwork = 'fintel' | 'cj' | 'direct' | 'none';
 
 /** Every payload carries this. Frontend production builds refuse to render mock:true. */
 export interface Provenance {
@@ -95,34 +92,3 @@ export interface Award {
   methodologyVersionId: string;
 }
 
-// ---------- insurance quoting (contract stubs for mock suite; V2.1) ----------
-export interface AutoQuoteRequest {
-  postalCode: string;
-  drivers: Array<{
-    birthYear: number;
-    licenceClass: 'G' | 'G2' | 'G1';
-    yearsLicensed: number;
-    atFaultClaims3y: number;
-    minorConvictions3y: number;
-  }>;
-  vehicle: { year: number; make: string; model: string; annualKm: number };
-  reformElections: { dcpdOptOut: boolean; opcf49IncomeReplacement: boolean };
-  renewal?: boolean;
-  priorAnnualPremiumCents?: number;
-}
-
-export interface CarrierQuote {
-  carrierCode: string;
-  carrierName: string;
-  badge: 'appointed' | 'mga' | 'editorial';
-  status: 'quoted' | 'declined' | 'referral_required';
-  declineReason: string | null;
-  annualPremiumCents: number | null;
-  bindMethod: 'broker_assisted';
-  ratesIndicativeOnly: boolean;
-}
-
-export interface AutoQuoteResponse extends Provenance {
-  quoteId: string;
-  panel: CarrierQuote[];      // TAC rule: complete profile sees ALL results, unsuppressed
-}

@@ -3,6 +3,9 @@
 Working slice of the backend plan: catalog + redirector on Postgres with
 tenant RLS. All compliance rules are schema-enforced. 8/8 integration tests pass.
 
+## Canonical mock suite
+Mocks live in the **ratefamily-mocks monorepo** (in the main repo at `mocks/`): all-vertical rating engines, lifecycle (bind/CSIO/transaction), money (payments/e-sign), marketing (affiliate/issuer), Compulife twin, personas, contract tests, k6, docker. This repo's contracts package mirrors the catalog portion of the canonical `@ratefamily/contracts` there.
+
 ## What's here
 - `packages/contracts` — shared TS types (frontend, mocks, and API all import these)
 - `packages/db/migrations/001_catalog_core.sql` — tenancy, issuers, cards,
